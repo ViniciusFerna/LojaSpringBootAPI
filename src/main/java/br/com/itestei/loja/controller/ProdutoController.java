@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -80,6 +81,23 @@ public class ProdutoController {
 		
 	}
 	
+	@PutMapping("/{id}")
+	public ResponseEntity<?> atualizarProduto(@PathVariable Long id, @RequestBody Produto produto) {
+		try {
+			Optional<Produto> verificaExiste = repProduto.findById(id);
+			
+			if (verificaExiste.isPresent()) {
+				// salvaria a atualização do produto
+				
+			} else {
+				return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Produto foi encontrado");
+			}
+			
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocorreu um erro no servidor");
+		}
+		
+	}
 	
 	
 }
