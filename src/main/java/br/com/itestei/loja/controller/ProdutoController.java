@@ -64,7 +64,9 @@ public class ProdutoController {
 			
 			if(verificarExiste.isPresent()) {
 				// Deletar se tiver algo presente
+				repProduto.deleteById(id);
 				
+				return ResponseEntity.ok("Produto deletado com sucesso");
 			} else {
 				// retornar mensagem de não encontrado
 				return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Nenhum produto foi encontrado");
