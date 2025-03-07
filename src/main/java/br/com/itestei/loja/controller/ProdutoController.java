@@ -88,6 +88,15 @@ public class ProdutoController {
 			
 			if (verificaExiste.isPresent()) {
 				// salvaria a atualização do produto
+				Produto p = verificaExiste.get();
+				p.setNome(produto.getNome());
+				p.setQuantidade(produto.getQuantidade());
+				p.setPreco(produto.getPreco());
+				
+				repProduto.save(p);
+				
+				return ResponseEntity.ok(p);
+				
 				
 			} else {
 				return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Produto foi encontrado");
